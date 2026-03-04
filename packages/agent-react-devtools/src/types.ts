@@ -20,6 +20,10 @@ export interface ComponentNode {
   children: number[];
   /** Renderer that owns this node */
   rendererId: number;
+  /** Number of errors logged by this component (from React DevTools protocol) */
+  errors: number;
+  /** Number of warnings logged by this component (from React DevTools protocol) */
+  warnings: number;
 }
 
 export interface InspectedElement {
@@ -123,6 +127,7 @@ export type IpcCommand =
   | { type: 'profile-rerenders'; limit?: number }
   | { type: 'profile-timeline'; limit?: number }
   | { type: 'profile-commit'; index: number; limit?: number }
+  | { type: 'errors' }
   | { type: 'wait'; condition: 'connected'; timeout?: number }
   | { type: 'wait'; condition: 'component'; name: string; timeout?: number };
 
